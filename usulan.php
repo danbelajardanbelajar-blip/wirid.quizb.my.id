@@ -10,11 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($nama !== '' && $pesan !== '') {
         $entry = [
+            'id' => uniqid('usl_'),
             'tanggal' => date('Y-m-d H:i:s'),
             'nama' => $nama,
             'email' => $email,
             'pesan' => $pesan,
-            'ip' => $_SERVER['REMOTE_ADDR'] ?? ''
+            'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+            'status' => 'pending'
         ];
         
         $data = [];

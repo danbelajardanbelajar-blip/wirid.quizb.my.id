@@ -22,12 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (move_uploaded_file($tmp_name, $destination)) {
             $entry = [
+                'id' => uniqid('file_'),
                 'tanggal' => date('Y-m-d H:i:s'),
                 'nama' => $nama,
                 'email' => $email,
                 'pesan' => $pesan,
                 'file_name' => $unique_name,
-                'ip' => $_SERVER['REMOTE_ADDR'] ?? ''
+                'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+                'status' => 'pending'
             ];
             
             $data = [];

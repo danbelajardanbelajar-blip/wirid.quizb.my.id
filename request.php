@@ -10,11 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($nama !== '' && $request_text !== '') {
         $entry = [
+            'id' => uniqid('req_'),
             'tanggal' => date('Y-m-d H:i:s'),
             'nama' => $nama,
             'email' => $email,
             'request' => $request_text,
-            'ip' => $_SERVER['REMOTE_ADDR'] ?? ''
+            'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+            'status' => 'pending'
         ];
         
         $data = [];
