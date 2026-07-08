@@ -619,9 +619,9 @@
 </div>
 
 <!-- Modal Edit -->
-<div id="editShade" class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-[100]"></div>
-<div id="editModalBox" class="fixed inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-[90vw] sm:max-w-2xl sm:max-h-[90vh] bg-white dark:bg-[#0a1128] sm:rounded-2xl flex flex-col opacity-0 translate-y-4 sm:translate-y-8 transition-all duration-300 z-[110] pointer-events-none shadow-2xl overflow-hidden">
-  <div class="flex flex-col h-full">
+<div id="editShade" class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-[100] flex items-center justify-center p-4 sm:p-6">
+  <div id="editModalBox" class="w-full max-w-2xl max-h-full bg-white dark:bg-[#0a1128] rounded-2xl flex flex-col opacity-0 scale-95 transition-all duration-300 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+    <div class="flex flex-col h-full">
     <div class="modal-head flex items-center justify-between p-4 sm:p-5 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5">
       <h3 class="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2">
         <span class="text-xl">✏️</span> Edit Entri
@@ -857,14 +857,16 @@
     buildKatPicker('eKatChips', 'eKat');
     
     editShade.classList.remove('opacity-0', 'pointer-events-none');
-    editBox.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4', 'sm:translate-y-8');
-    editBox.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'sm:translate-y-0');
+    editShade.classList.add('opacity-100', 'pointer-events-auto');
+    editBox.classList.remove('opacity-0', 'scale-95');
+    editBox.classList.add('opacity-100', 'scale-100');
   }
 
   function closeEditModal() {
+    editShade.classList.remove('opacity-100', 'pointer-events-auto');
     editShade.classList.add('opacity-0', 'pointer-events-none');
-    editBox.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4', 'sm:translate-y-8');
-    editBox.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0', 'sm:translate-y-0');
+    editBox.classList.remove('opacity-100', 'scale-100');
+    editBox.classList.add('opacity-0', 'scale-95');
     editingId = null;
   }
 
