@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Jangan redirect jika yang diakses adalah file/folder yang benar-benar ada (seperti CSS/JS/Gambar)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect semua route lainnya ke index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
