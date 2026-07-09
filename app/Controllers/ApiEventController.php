@@ -28,13 +28,12 @@ class ApiEventController extends Controller {
         $startDay = $body['startDay'] ?? 0;
         $startHijriDay = $body['startHijriDay'] ?? -1;
         $startHijriMonth = $body['startHijriMonth'] ?? 0;
-        $istikmal = !empty($body['istikmal']);
 
         if ($label === '') {
             $this->json(['ok' => false, 'error' => 'Nama event wajib diisi'], 400);
         }
 
-        $result = $this->model->add($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay, $startHijriMonth, $istikmal);
+        $result = $this->model->add($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay, $startHijriMonth);
         if ($result['success']) {
             $this->json(['ok' => true, 'message' => 'Berhasil ditambah']);
         } else {
@@ -52,7 +51,6 @@ class ApiEventController extends Controller {
         $startDay = $body['startDay'] ?? 0;
         $startHijriDay = $body['startHijriDay'] ?? -1;
         $startHijriMonth = $body['startHijriMonth'] ?? 0;
-        $istikmal = !empty($body['istikmal']);
 
         if ($id === '') {
             $this->json(['ok' => false, 'error' => 'ID wajib diisi'], 400);
@@ -61,7 +59,7 @@ class ApiEventController extends Controller {
             $this->json(['ok' => false, 'error' => 'Nama event wajib diisi'], 400);
         }
 
-        $result = $this->model->update($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay, $startHijriMonth, $istikmal);
+        $result = $this->model->update($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay, $startHijriMonth);
         if ($result['success']) {
             $this->json(['ok' => true, 'message' => 'Berhasil diperbarui']);
         } else {
