@@ -72,6 +72,12 @@
             <option value="SELAPANAN">Selapanan (35 hari)</option>
           </select>
         </div>
+        <div class="mb-3">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" id="evIstikmal" class="w-4 h-4 text-brand bg-gray-100 border-gray-300 rounded focus:ring-brand dark:focus:ring-brand/50 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Gunakan Istikmal (+1 hari pada tgl Hijriah)</span>
+          </label>
+        </div>
       </div>
       <div class="p-4 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 flex justify-end">
         <button id="evSave" class="px-5 py-2 rounded-xl bg-brand hover:bg-emerald-600 text-white font-bold transition-all shadow-lg shadow-brand/30 active:scale-95">Simpan</button>
@@ -155,7 +161,6 @@
         const d = date.getDate();
         const pasaran = getPasaran(date);
         const dayOfWeek = date.getDay();
-        const { hDay, hMonth, hYear } = getHijriParts(date);
 
         // Custom JSON events
         allEvents.forEach(ev => {
@@ -167,13 +172,16 @@
            currentCal.setHours(0,0,0,0);
            
            if (currentCal.getTime() >= startCal.getTime()) {
+             const checkDate = ev.istikmal ? new Date(date.getTime() + 86400000) : date;
+             const checkHijri = getHijriParts(checkDate);
+             
              switch (ev.type) {
                case 'NONE': matches = (y === sY && m === sM && d === sD); break;
                case 'WEEKLY': matches = (dayOfWeek === startCal.getDay()); break;
                case 'MONTHLY': matches = (d === sD); break;
-               case 'MONTHLY_HIJRI': matches = (hDay === ev.startHijriDay); break;
+               case 'MONTHLY_HIJRI': matches = (checkHijri.hDay === ev.startHijriDay); break;
                case 'YEARLY': matches = (m === sM && d === sD); break;
-               case 'YEARLY_HIJRI': matches = (hMonth === ev.startHijriMonth && hDay === ev.startHijriDay); break;
+               case 'YEARLY_HIJRI': matches = (checkHijri.hMonth === ev.startHijriMonth && checkHijri.hDay === ev.startHijriDay); break;
                case 'SELAPANAN': matches = (dayOfWeek === startCal.getDay() && pasaran === getPasaran(startCal)); break;
              }
            }
@@ -317,6 +325,7 @@
         document.getElementById('evId').value = '';
         document.getElementById('evLabel').value = '';
         document.getElementById('evType').value = 'NONE';
+        document.getElementById('evIstikmal').checked = false;
 
         evShade.classList.remove('opacity-0', 'pointer-events-none');
         evShade.classList.add('opacity-100', 'pointer-events-auto');
@@ -338,9 +347,11 @@
         const id = document.getElementById('evId').value;
         const label = document.getElementById('evLabel').value.trim();
         const type = document.getElementById('evType').value;
+        const isIstikmal = document.getElementById('evIstikmal').checked;
         if (!label) return alert("Nama event harus diisi!");
         
-        const { hDay, hMonth } = getHijriParts(selectedDate);
+        const calcDate = isIstikmal ? new Date(selectedDate.getTime() + 86400000) : selectedDate;
+        const { hDay, hMonth } = getHijriParts(calcDate);
         
         const payload = {
           id: id,
@@ -350,7 +361,8 @@
           startMonth: selectedDate.getMonth(),
           startDay: selectedDate.getDate(),
           startHijriDay: hDay,
-          startHijriMonth: hMonth
+          startHijriMonth: hMonth,
+          istikmal: isIstikmal
         };
 
         const btn = document.getElementById('evSave');
@@ -389,14 +401,17 @@
          const ev = allEvents.find(e => e.id === id);
          if (!ev) return;
          selectedDate = new Date(ev.startYear, ev.startMonth, ev.startDay);
-         const { hDay, hMonth, hYear } = getHijriParts(selectedDate);
+         
+         const displayDate = ev.istikmal ? new Date(selectedDate.getTime() + 86400000) : selectedDate;
+         const { hDay, hMonth, hYear } = getHijriParts(displayDate);
          const pName = pasaranNames[getPasaran(selectedDate)];
          
          document.getElementById('evDateTitle').innerText = `${ev.startDay} ${masehiMonths[ev.startMonth]} ${ev.startYear} / ${hDay} ${hijriMonths[hMonth]} ${hYear} H (${pName})`;
          document.getElementById('evDate').value = selectedDate.getTime();
          document.getElementById('evId').value = ev.id;
          document.getElementById('evLabel').value = ev.label;
-         document.getElementById('evType').value = ev.type;
+         document.getElementById('evType').value = ev.type || 'NONE';
+         document.getElementById('evIstikmal').checked = !!ev.istikmal;
          
          evShade.classList.remove('opacity-0', 'pointer-events-none');
          evShade.classList.add('opacity-100', 'pointer-events-auto');
