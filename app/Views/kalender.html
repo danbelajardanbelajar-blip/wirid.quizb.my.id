@@ -139,7 +139,8 @@
 
       function isIstikmal(date) {
           const set = getIstikmalMonths();
-          const hParts = getHijriPartsNative(date);
+          const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+          const hParts = getHijriPartsNative(firstDay);
           let mBase = hParts.hMonth;
           let yBase = hParts.hYear;
           let pM = (mBase === 0) ? 11 : mBase - 1;
@@ -200,7 +201,11 @@
            const currentCal = new Date(y, m, d);
            currentCal.setHours(0,0,0,0);
            
-           if (currentCal.getTime() >= startCal.getTime()) {
+           // Relax the start date for Hijri events to accommodate -1 day shifts from Istikmal
+           const checkStartCal = new Date(startCal.getTime());
+           if (ev.type.includes('HIJRI')) checkStartCal.setDate(checkStartCal.getDate() - 2);
+
+           if (currentCal.getTime() >= checkStartCal.getTime()) {
              switch (ev.type) {
                case 'NONE': matches = (y === sY && m === sM && d === sD); break;
                case 'WEEKLY': matches = (dayOfWeek === startCal.getDay()); break;
