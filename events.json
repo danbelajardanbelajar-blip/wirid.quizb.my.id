@@ -1,1 +1,352 @@
-[]
+[
+    {
+        "id": "ev_m_6a4f858e1dc61",
+        "label": "Tahun Baru Masehi",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 1,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1df6b",
+        "label": "Hari Raya Nyepi",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 2,
+        "startDay": 28,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1e29b",
+        "label": "Hari Kartini",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 3,
+        "startDay": 21,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1e5c6",
+        "label": "Hari Buruh Internasional",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 4,
+        "startDay": 1,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1e991",
+        "label": "Hari Pendidikan Nasional",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 4,
+        "startDay": 2,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1ed6f",
+        "label": "Hari Kebangkitan Nasional",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 4,
+        "startDay": 20,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1f136",
+        "label": "Hari Lahir Pancasila",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 5,
+        "startDay": 1,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1f471",
+        "label": "Hari Kemerdekaan RI",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 7,
+        "startDay": 17,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1f886",
+        "label": "Hari Tani Nasional",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 8,
+        "startDay": 24,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1fc32",
+        "label": "Hari Kesaktian Pancasila",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 9,
+        "startDay": 1,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e1ffed",
+        "label": "Hari TNI",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 9,
+        "startDay": 5,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e204dc",
+        "label": "Hari Santri Nasional",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 9,
+        "startDay": 22,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e208c3",
+        "label": "Hari Sumpah Pemuda",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 9,
+        "startDay": 28,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e20ca5",
+        "label": "Hari Pahlawan",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 10,
+        "startDay": 10,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e2110d",
+        "label": "Hari Ibu",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 11,
+        "startDay": 22,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_m_6a4f858e21545",
+        "label": "Hari Natal",
+        "type": "YEARLY",
+        "startYear": 2024,
+        "startMonth": 11,
+        "startDay": 25,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_h_6a4f858e218ed",
+        "label": "Tahun Baru Islam",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_h_6a4f858e21c8f",
+        "label": "Hari Asyura",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 10,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_h_6a4f858e22085",
+        "label": "Maulid Nabi Muhammad SAW",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 12,
+        "startHijriMonth": 2
+    },
+    {
+        "id": "ev_h_6a4f858e2245e",
+        "label": "Isra Mi'raj Nabi Muhammad SAW",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 27,
+        "startHijriMonth": 6
+    },
+    {
+        "id": "ev_h_6a4f858e228d4",
+        "label": "Nisfu Sya'ban",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 15,
+        "startHijriMonth": 7
+    },
+    {
+        "id": "ev_h_6a4f858e22c9e",
+        "label": "Awal Ramadan",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 1,
+        "startHijriMonth": 8
+    },
+    {
+        "id": "ev_h_6a4f858e230ac",
+        "label": "Nuzulul Quran",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 17,
+        "startHijriMonth": 8
+    },
+    {
+        "id": "ev_h_6a4f858e234ea",
+        "label": "Hari Raya Idul Fitri",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 1,
+        "startHijriMonth": 9
+    },
+    {
+        "id": "ev_h_6a4f858e23965",
+        "label": "Hari Raya Idul Fitri (Hari ke-2)",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 2,
+        "startHijriMonth": 9
+    },
+    {
+        "id": "ev_h_6a4f858e23d24",
+        "label": "Hari Raya Idul Adha",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 10,
+        "startHijriMonth": 11
+    },
+    {
+        "id": "ev_p_6a4f858e240bd",
+        "label": "Puasa Ayyamul Bidh (13)",
+        "type": "MONTHLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 13,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_p_6a4f858e244bd",
+        "label": "Puasa Ayyamul Bidh (14)",
+        "type": "MONTHLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 14,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_p_6a4f858e248ee",
+        "label": "Puasa Ayyamul Bidh (15)",
+        "type": "MONTHLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 15,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_p_6a4f858e24d9c",
+        "label": "Puasa Tasu'a",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 9,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_p_6a4f858e25191",
+        "label": "Puasa Arafah",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 9,
+        "startHijriMonth": 11
+    },
+    {
+        "id": "ev_p_6a4f858e25655",
+        "label": "Puasa Tarwiyah",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 8,
+        "startHijriMonth": 11
+    },
+    {
+        "id": "ev_p_6a4f858e25a79",
+        "label": "Puasa Syawwal",
+        "type": "YEARLY_HIJRI",
+        "startYear": 2024,
+        "startMonth": 0,
+        "startDay": 0,
+        "startHijriDay": 2,
+        "startHijriMonth": 9
+    },
+    {
+        "id": "ev_s_6a4f858e25e35",
+        "label": "Ngaos Selapan (Sabtu Pon)",
+        "type": "SELAPANAN",
+        "startYear": 2024,
+        "startMonth": 5,
+        "startDay": 22,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    },
+    {
+        "id": "ev_s_6a4f858e26242",
+        "label": "Ngaos Giliran (Kamis Wage)",
+        "type": "SELAPANAN",
+        "startYear": 2024,
+        "startMonth": 5,
+        "startDay": 20,
+        "startHijriDay": -1,
+        "startHijriMonth": 0
+    }
+]

@@ -45,8 +45,9 @@
         <button id="evClose" class="w-8 h-8 flex items-center justify-center rounded-xl bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 transition-colors text-gray-600 dark:text-gray-300">✕</button>
       </div>
       <div class="p-5 overflow-y-auto max-h-[60vh]">
-        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Tambah Event Baru</h4>
+        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Formulir Event</h4>
         <input type="hidden" id="evDate">
+        <input type="hidden" id="evId">
         <div class="mb-3">
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Event</label>
           <input type="text" id="evLabel" class="w-full bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand/50 transition-all">
@@ -58,7 +59,8 @@
             <option value="WEEKLY">Setiap minggu</option>
             <option value="MONTHLY">Setiap bulan masehi</option>
             <option value="MONTHLY_HIJRI">Setiap bulan hijriyah</option>
-            <option value="YEARLY">Setiap tahun sekali</option>
+            <option value="YEARLY">Setiap tahun masehi</option>
+            <option value="YEARLY_HIJRI">Setiap tahun hijriyah</option>
             <option value="SELAPANAN">Selapanan (35 hari)</option>
           </select>
         </div>
@@ -80,22 +82,6 @@
       const pasaranNames = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
       const hijriMonths = ["Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir", "Jumadil Awal", "Jumadil Akhir", "Rajab", "Sya'ban", "Ramadan", "Syawal", "Dzulqa'dah", "Dzulhijjah"];
       const masehiMonths = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-
-      // Fixed Holidays
-      const fixedHolidays = {
-        '0-1': 'Tahun Baru Masehi', '2-28': 'Hari Raya Nyepi', '3-21': 'Hari Kartini', '4-1': 'Hari Buruh Internasional',
-        '4-2': 'Hari Pendidikan Nasional', '4-20': 'Hari Kebangkitan Nasional', '5-1': 'Hari Lahir Pancasila',
-        '7-17': 'Hari Kemerdekaan RI', '8-15': 'Hari Tani Nasional', '9-1': 'Hari Kesaktian Pancasila',
-        '9-5': 'Hari TNI', '9-22': 'Hari Santri Nasional', '9-28': 'Hari Sumpah Pemuda',
-        '10-10': 'Hari Pahlawan', '11-22': 'Hari Ibu', '11-25': 'Hari Natal'
-      };
-
-      const hijriHolidays = {
-        '0-1': 'Tahun Baru Islam', '0-10': 'Hari Asyura', '2-12': 'Maulid Nabi Muhammad SAW',
-        '6-27': "Isra Mi'raj Nabi Muhammad SAW", '7-15': "Nisfu Sya'ban", '8-1': 'Awal Ramadan',
-        '8-17': 'Nuzulul Quran', '9-1': 'Hari Raya Idul Fitri', '9-2': 'Hari Raya Idul Fitri (Hari ke-2)',
-        '11-10': 'Hari Raya Idul Adha'
-      };
 
       function getPasaran(date) {
         const target = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
@@ -144,26 +130,6 @@
         const dayOfWeek = date.getDay();
         const { hDay, hMonth, hYear } = getHijriParts(date);
 
-        // Fixed Masehi
-        const fh = fixedHolidays[`${m}-${d}`];
-        if (fh) events.push({ label: fh, isHoliday: true, isCustom: false });
-
-        // Hijri Holidays
-        const hh = hijriHolidays[`${hMonth}-${hDay}`];
-        if (hh) events.push({ label: hh, isHoliday: true, isCustom: false });
-
-        // Puasa
-        if (hDay >= 13 && hDay <= 15) events.push({ label: 'Puasa Ayyamul Bidh', isHoliday: true, isCustom: false });
-        if (hMonth === 0 && hDay === 9) events.push({ label: "Puasa Tasu'a", isHoliday: true, isCustom: false });
-        if (hMonth === 0 && hDay === 10) events.push({ label: 'Puasa Asyura', isHoliday: true, isCustom: false });
-        if (hMonth === 11 && hDay === 8) events.push({ label: 'Puasa Tarwiyah', isHoliday: true, isCustom: false });
-        if (hMonth === 11 && hDay === 9) events.push({ label: 'Puasa Arafah', isHoliday: true, isCustom: false });
-        if (hMonth === 9 && hDay === 2) events.push({ label: 'Puasa Syawwal', isHoliday: true, isCustom: false });
-
-        // Default Selapanan / Giliran
-        if (dayOfWeek === 6 && pasaran === 2) events.push({ label: 'Ngaos Selapan', isHoliday: false, isCustom: false });
-        if (dayOfWeek === 4 && pasaran === 3) events.push({ label: 'Ngaos Giliran', isHoliday: false, isCustom: false });
-
         // Custom JSON events
         allEvents.forEach(ev => {
            let matches = false;
@@ -180,11 +146,13 @@
                case 'MONTHLY': matches = (d === sD); break;
                case 'MONTHLY_HIJRI': matches = (hDay === ev.startHijriDay); break;
                case 'YEARLY': matches = (m === sM && d === sD); break;
+               case 'YEARLY_HIJRI': matches = (hMonth === ev.startHijriMonth && hDay === ev.startHijriDay); break;
                case 'SELAPANAN': matches = (dayOfWeek === startCal.getDay() && pasaran === getPasaran(startCal)); break;
              }
            }
            if (matches) {
-             events.push({ label: ev.label, isHoliday: false, isCustom: true, id: ev.id });
+             let isHol = ev.id.startsWith('ev_m_') || ev.id.startsWith('ev_h_') || ev.id.startsWith('ev_p_');
+             events.push({ label: ev.label, isHoliday: isHol, isCustom: true, id: ev.id, rawType: ev.type });
            }
         });
 
@@ -258,9 +226,14 @@
         } else {
            allMonthEvents.forEach(ev => {
              let typeColor = ev.isHoliday ? 'bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400 border-red-200 dark:border-red-500/20' : 'bg-gray-50 text-gray-700 dark:bg-white/5 dark:text-gray-300 border-gray-200 dark:border-white/10';
-             if (ev.isCustom) typeColor = 'bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400 border-blue-200 dark:border-blue-500/20';
+             if (ev.isCustom && !ev.id.startsWith('ev_')) typeColor = 'bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400 border-blue-200 dark:border-blue-500/20';
              
-             let delBtn = ev.isCustom ? `<button class="text-red-500 hover:text-red-700 p-2 rounded-lg bg-white dark:bg-transparent hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors" title="Hapus Event" onclick="deleteEvent('${ev.id}')"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>` : '';
+             let actionBtns = ev.isCustom ? `
+               <div class="flex items-center gap-1">
+                 <button class="text-blue-500 hover:text-blue-700 p-2 rounded-lg bg-white dark:bg-transparent hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors" title="Edit Event" onclick="editEvent('${ev.id}')"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
+                 <button class="text-red-500 hover:text-red-700 p-2 rounded-lg bg-white dark:bg-transparent hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors" title="Hapus Event" onclick="deleteEvent('${ev.id}')"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+               </div>
+             ` : '';
              
              monthEvList.innerHTML += `
                <div class="flex items-center justify-between p-3 rounded-xl border ${typeColor}">
@@ -268,7 +241,7 @@
                    <div class="font-bold text-sm sm:text-base mb-0.5">${ev.label}</div>
                    <div class="text-xs sm:text-sm opacity-80">${ev.date} ${masehiMonths[activeMonth]} ${activeYear} (${ev.pName})</div>
                  </div>
-                 ${delBtn}
+                 ${actionBtns}
                </div>
              `;
            });
@@ -306,6 +279,7 @@
         
         document.getElementById('evDateTitle').innerText = `${d} ${masehiMonths[activeMonth]} ${activeYear} / ${hDay} ${hijriMonths[hMonth]} ${hYear} H (${pName})`;
         document.getElementById('evDate').value = selectedDate.getTime();
+        document.getElementById('evId').value = '';
         document.getElementById('evLabel').value = '';
         document.getElementById('evType').value = 'NONE';
 
@@ -326,19 +300,22 @@
       evShade.addEventListener('click', (e) => { if (e.target === evShade) closeModal(); });
 
       document.getElementById('evSave').addEventListener('click', () => {
+        const id = document.getElementById('evId').value;
         const label = document.getElementById('evLabel').value.trim();
         const type = document.getElementById('evType').value;
         if (!label) return alert("Nama event harus diisi!");
         
-        const { hDay } = getHijriParts(selectedDate);
+        const { hDay, hMonth } = getHijriParts(selectedDate);
         
         const payload = {
+          id: id,
           label: label,
           type: type,
           startYear: selectedDate.getFullYear(),
           startMonth: selectedDate.getMonth(),
           startDay: selectedDate.getDate(),
-          startHijriDay: hDay
+          startHijriDay: hDay,
+          startHijriMonth: hMonth
         };
 
         const btn = document.getElementById('evSave');
@@ -346,7 +323,9 @@
         btn.innerText = 'Menyimpan...';
         btn.disabled = true;
 
-        fetch('/api/events/add', {
+        const endpoint = id ? '/api/events/update' : '/api/events/add';
+
+        fetch(endpoint, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(payload)
@@ -357,6 +336,7 @@
           btn.disabled = false;
           if (res.ok) {
             document.getElementById('evLabel').value = '';
+            document.getElementById('evId').value = '';
             fetchEvents();
             closeModal();
           } else {
@@ -369,6 +349,25 @@
           alert("Terjadi kesalahan jaringan");
         });
       });
+
+      window.editEvent = function(id) {
+         const ev = allEvents.find(e => e.id === id);
+         if (!ev) return;
+         selectedDate = new Date(ev.startYear, ev.startMonth, ev.startDay);
+         const { hDay, hMonth, hYear } = getHijriParts(selectedDate);
+         const pName = pasaranNames[getPasaran(selectedDate)];
+         
+         document.getElementById('evDateTitle').innerText = `${ev.startDay} ${masehiMonths[ev.startMonth]} ${ev.startYear} / ${hDay} ${hijriMonths[hMonth]} ${hYear} H (${pName})`;
+         document.getElementById('evDate').value = selectedDate.getTime();
+         document.getElementById('evId').value = ev.id;
+         document.getElementById('evLabel').value = ev.label;
+         document.getElementById('evType').value = ev.type;
+         
+         evShade.classList.remove('opacity-0', 'pointer-events-none');
+         evShade.classList.add('opacity-100', 'pointer-events-auto');
+         evModal.classList.remove('opacity-0', 'scale-95');
+         evModal.classList.add('opacity-100', 'scale-100');
+      };
 
       window.deleteEvent = function(id) {
         if (!confirm("Hapus event ini?")) return;

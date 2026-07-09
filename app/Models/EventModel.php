@@ -21,7 +21,7 @@ class EventModel extends BaseModel {
         return file_put_contents($this->dataFile, json_encode($data, JSON_PRETTY_PRINT)) !== false;
     }
 
-    public function add($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay) {
+    public function add($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay, $startHijriMonth = 0) {
         $data = $this->getAll();
         foreach ($data as $item) {
             if ($item['id'] === $id) {
@@ -35,8 +35,32 @@ class EventModel extends BaseModel {
             'startYear' => (int)$startYear,
             'startMonth' => (int)$startMonth,
             'startDay' => (int)$startDay,
-            'startHijriDay' => (int)$startHijriDay
+            'startHijriDay' => (int)$startHijriDay,
+            'startHijriMonth' => (int)$startHijriMonth
         ];
+        if ($this->saveAll($data)) {
+            return ['success' => true];
+        }
+        return ['success' => false, 'error' => 'Gagal menyimpan ke events.json'];
+    }
+
+    public function update($id, $label, $type, $startYear, $startMonth, $startDay, $startHijriDay, $startHijriMonth = 0) {
+        $data = $this->getAll();
+        $found = false;
+        foreach ($data as &$item) {
+            if ($item['id'] === $id) {
+                $item['label'] = $label;
+                $item['type'] = $type;
+                $item['startYear'] = (int)$startYear;
+                $item['startMonth'] = (int)$startMonth;
+                $item['startDay'] = (int)$startDay;
+                $item['startHijriDay'] = (int)$startHijriDay;
+                $item['startHijriMonth'] = (int)$startHijriMonth;
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) return ['success' => false, 'error' => 'ID tidak ditemukan'];
         if ($this->saveAll($data)) {
             return ['success' => true];
         }

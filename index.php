@@ -38,6 +38,7 @@ $router->add('POST', '/api/saran/delete', 'ApiSaranController', 'delete');
 // API Routes untuk Events Kalender (events.json)
 $router->add('GET', '/api/events', 'ApiEventController', 'index');
 $router->add('POST', '/api/events/add', 'ApiEventController', 'add');
+$router->add('POST', '/api/events/update', 'ApiEventController', 'update');
 $router->add('POST', '/api/events/delete', 'ApiEventController', 'delete');
 
 // Dapatkan method dan URI
