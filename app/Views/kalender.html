@@ -1,5 +1,13 @@
 <template id="tpl-kalender">
   <div class="max-w-[860px] mx-auto p-4 sm:p-6 pb-12 pt-6">
+    <div class="flex items-center justify-between mb-4">
+      <a href="/" data-link class="px-4 py-2 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-white/10 transition-colors text-sm font-semibold flex items-center gap-2 shadow-sm">
+         🏠 Kembali ke Beranda
+      </a>
+      <a href="/admin" data-link class="px-4 py-2 bg-brand/10 text-brand rounded-xl hover:bg-brand/20 transition-colors text-sm font-semibold flex items-center gap-2 shadow-sm">
+         🛡️ Kembali ke Admin
+      </a>
+    </div>
     <div class="bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-white/10 rounded-3xl p-6 sm:p-8 shadow-sm">
       <div class="flex items-center justify-between mb-6">
         <button id="calPrev" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 flex items-center justify-center transition-colors active:scale-95 text-gray-700 dark:text-gray-300">
@@ -67,6 +75,25 @@
       </div>
       <div class="p-4 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 flex justify-end">
         <button id="evSave" class="px-5 py-2 rounded-xl bg-brand hover:bg-emerald-600 text-white font-bold transition-all shadow-lg shadow-brand/30 active:scale-95">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Hapus -->
+  <div id="delShade" class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-[100] flex items-center justify-center p-4 sm:p-6">
+    <div id="delModal" class="w-full max-w-sm bg-white dark:bg-[#0a1128] rounded-2xl flex flex-col opacity-0 scale-95 transition-all duration-300 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 flex items-center justify-between">
+        <h3 class="font-bold text-lg text-gray-900 dark:text-white">Opsi Hapus</h3>
+        <button id="delClose" class="w-8 h-8 flex items-center justify-center rounded-xl bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 transition-colors text-gray-600 dark:text-gray-300">✕</button>
+      </div>
+      <div class="p-5 flex flex-col gap-3">
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Event ini berulang. Apa yang ingin Anda hapus?</p>
+        <button id="btnDelSingle" class="w-full text-left px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-red-50 dark:hover:bg-red-500/10 hover:border-red-200 dark:hover:border-red-500/20 hover:text-red-600 dark:hover:text-red-400 transition-colors text-sm font-semibold">
+           Hapus event pada tanggal ini saja
+        </button>
+        <button id="btnDelAll" class="w-full text-left px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-red-50 dark:hover:bg-red-500/10 hover:border-red-200 dark:hover:border-red-500/20 hover:text-red-600 dark:hover:text-red-400 transition-colors text-sm font-semibold">
+           Hapus event dan semua pengulangannya
+        </button>
       </div>
     </div>
   </div>
@@ -150,9 +177,17 @@
                case 'SELAPANAN': matches = (dayOfWeek === startCal.getDay() && pasaran === getPasaran(startCal)); break;
              }
            }
+           if (matches && ev.exceptions) {
+             const y = date.getFullYear();
+             const mStr = String(date.getMonth() + 1).padStart(2, '0');
+             const dStr = String(date.getDate()).padStart(2, '0');
+             if (ev.exceptions.includes(`${y}-${mStr}-${dStr}`)) {
+               matches = false;
+             }
+           }
            if (matches) {
              let isHol = ev.id.startsWith('ev_m_') || ev.id.startsWith('ev_h_') || ev.id.startsWith('ev_p_');
-             events.push({ label: ev.label, isHoliday: isHol, isCustom: true, id: ev.id, rawType: ev.type });
+             events.push({ label: ev.label, isHoliday: isHol, isCustom: true, id: ev.id, rawType: ev.type, dateStr: `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}` });
            }
         });
 
@@ -231,7 +266,7 @@
              let actionBtns = ev.isCustom ? `
                <div class="flex items-center gap-1">
                  <button class="text-blue-500 hover:text-blue-700 p-2 rounded-lg bg-white dark:bg-transparent hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors" title="Edit Event" onclick="editEvent('${ev.id}')"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
-                 <button class="text-red-500 hover:text-red-700 p-2 rounded-lg bg-white dark:bg-transparent hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors" title="Hapus Event" onclick="deleteEvent('${ev.id}')"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                 <button class="text-red-500 hover:text-red-700 p-2 rounded-lg bg-white dark:bg-transparent hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors" title="Hapus Event" onclick="deleteEvent('${ev.id}', '${ev.rawType}', '${ev.dateStr}')"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
                </div>
              ` : '';
              
@@ -369,21 +404,58 @@
          evModal.classList.add('opacity-100', 'scale-100');
       };
 
-      window.deleteEvent = function(id) {
-        if (!confirm("Hapus event ini?")) return;
-        fetch('/api/events/delete', {
+      const delShade = document.getElementById('delShade');
+      const delModal = document.getElementById('delModal');
+      let delTargetId = null;
+      let delTargetDateStr = null;
+
+      function closeDelModal() {
+        delShade.classList.remove('opacity-100', 'pointer-events-auto');
+        delShade.classList.add('opacity-0', 'pointer-events-none');
+        delModal.classList.remove('opacity-100', 'scale-100');
+        delModal.classList.add('opacity-0', 'scale-95');
+      }
+
+      document.getElementById('delClose').addEventListener('click', closeDelModal);
+      delShade.addEventListener('click', (e) => { if(e.target === delShade) closeDelModal(); });
+
+      function performDelete(endpoint, payload) {
+        fetch(endpoint, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({id: id})
+          body: JSON.stringify(payload)
         })
         .then(res => res.json())
         .then(res => {
           if (res.ok) {
+            closeDelModal();
             fetchEvents();
           } else {
-            alert(res.error || "Gagal menghapus");
+            alert(res.error || "Gagal memproses");
           }
         });
+      }
+
+      document.getElementById('btnDelSingle').addEventListener('click', () => {
+         performDelete('/api/events/add_exception', { id: delTargetId, date: delTargetDateStr });
+      });
+
+      document.getElementById('btnDelAll').addEventListener('click', () => {
+         performDelete('/api/events/delete', { id: delTargetId });
+      });
+
+      window.deleteEvent = function(id, type, dateStr) {
+        if (type === 'NONE') {
+           if (!confirm("Hapus event ini?")) return;
+           performDelete('/api/events/delete', { id: id });
+        } else {
+           delTargetId = id;
+           delTargetDateStr = dateStr;
+           delShade.classList.remove('opacity-0', 'pointer-events-none');
+           delShade.classList.add('opacity-100', 'pointer-events-auto');
+           delModal.classList.remove('opacity-0', 'scale-95');
+           delModal.classList.add('opacity-100', 'scale-100');
+        }
       };
 
       // Initialization

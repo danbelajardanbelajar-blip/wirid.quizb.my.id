@@ -82,4 +82,21 @@ class ApiEventController extends Controller {
             $this->json(['ok' => false, 'error' => $result['error'] ?? 'Gagal menghapus'], 404);
         }
     }
+
+    public function addException() {
+        $body = $this->getJsonBody();
+        $id = trim($body['id'] ?? '');
+        $date = trim($body['date'] ?? '');
+
+        if ($id === '' || $date === '') {
+            $this->json(['ok' => false, 'error' => 'ID dan Date wajib diisi'], 400);
+        }
+
+        $result = $this->model->addException($id, $date);
+        if ($result['success']) {
+            $this->json(['ok' => true, 'message' => 'Pengecualian berhasil ditambahkan']);
+        } else {
+            $this->json(['ok' => false, 'error' => $result['error'] ?? 'Gagal menambahkan pengecualian'], 400);
+        }
+    }
 }

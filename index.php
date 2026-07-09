@@ -40,6 +40,7 @@ $router->add('GET', '/api/events', 'ApiEventController', 'index');
 $router->add('POST', '/api/events/add', 'ApiEventController', 'add');
 $router->add('POST', '/api/events/update', 'ApiEventController', 'update');
 $router->add('POST', '/api/events/delete', 'ApiEventController', 'delete');
+$router->add('POST', '/api/events/add_exception', 'ApiEventController', 'addException');
 
 // Dapatkan method dan URI
 $method = $_SERVER['REQUEST_METHOD'];

@@ -64,7 +64,6 @@
           <!-- Desktop Nav -->
           <div class="hidden md:flex items-center gap-4 mr-2 text-sm font-semibold text-gray-600 dark:text-gray-300">
             <a href="/" data-link class="hover:text-brand transition-colors">Beranda</a>
-            <a href="/kalender" data-link class="hover:text-brand transition-colors">Kalender</a>
             <a href="/saran" data-link class="hover:text-brand transition-colors">Saran</a>
             <a href="/tentang" data-link class="hover:text-brand transition-colors">Tentang</a>
             <a href="/admin" data-link class="hover:text-brand transition-colors">Admin</a>
@@ -102,7 +101,6 @@
     <div class="flex-1 overflow-auto p-4">
       <div class="grid gap-2">
         <a class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-br from-brand/10 to-blue-500/10 border border-brand/30 hover:border-brand/50 text-brand font-semibold transition-all" href="/download" data-link>📲 Download Aplikasi</a>
-        <a class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-brand/5 hover:border-brand/30 transition-all font-medium text-gray-800 dark:text-gray-200" href="/kalender" data-link>📅 Kalender Hijriyah</a>
         <a class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-brand/5 hover:border-brand/30 transition-all font-medium text-gray-800 dark:text-gray-200" href="/admin" data-link>🛡️ Halaman Admin</a>
         <a class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-brand/5 hover:border-brand/30 transition-all font-medium text-gray-800 dark:text-gray-200" href="/saran" data-link>💡 Saran & Usulan</a>
         <a class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-brand/5 hover:border-brand/30 transition-all font-medium text-gray-800 dark:text-gray-200" href="/tentang" data-link>ℹ️ Tentang Aplikasi</a>
@@ -556,6 +554,9 @@
     <div class="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-2">
       <a href="/admin-saran" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         ✉️ Kelola Saran &amp; Request &rarr;
+      </a>
+      <a href="/kalender" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-brand shadow-sm whitespace-nowrap border-brand/20">
+        📅 Kelola Kalender &rarr;
       </a>
       <a href="/" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         &larr; Home

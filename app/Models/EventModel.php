@@ -36,7 +36,8 @@ class EventModel extends BaseModel {
             'startMonth' => (int)$startMonth,
             'startDay' => (int)$startDay,
             'startHijriDay' => (int)$startHijriDay,
-            'startHijriMonth' => (int)$startHijriMonth
+            'startHijriMonth' => (int)$startHijriMonth,
+            'exceptions' => []
         ];
         if ($this->saveAll($data)) {
             return ['success' => true];
@@ -56,6 +57,28 @@ class EventModel extends BaseModel {
                 $item['startDay'] = (int)$startDay;
                 $item['startHijriDay'] = (int)$startHijriDay;
                 $item['startHijriMonth'] = (int)$startHijriMonth;
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) return ['success' => false, 'error' => 'ID tidak ditemukan'];
+        if ($this->saveAll($data)) {
+            return ['success' => true];
+        }
+        return ['success' => false, 'error' => 'Gagal menyimpan ke events.json'];
+    }
+
+    public function addException($id, $dateString) {
+        $data = $this->getAll();
+        $found = false;
+        foreach ($data as &$item) {
+            if ($item['id'] === $id) {
+                if (!isset($item['exceptions'])) {
+                    $item['exceptions'] = [];
+                }
+                if (!in_array($dateString, $item['exceptions'])) {
+                    $item['exceptions'][] = $dateString;
+                }
                 $found = true;
                 break;
             }
