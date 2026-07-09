@@ -18,6 +18,7 @@ require_once __DIR__ . '/app/Core/Controller.php';
 require_once __DIR__ . '/app/Controllers/PageController.php';
 require_once __DIR__ . '/app/Controllers/ApiDataController.php';
 require_once __DIR__ . '/app/Controllers/ApiSaranController.php';
+require_once __DIR__ . '/app/Controllers/ApiEventController.php';
 
 use App\Core\Router;
 
@@ -33,6 +34,11 @@ $router->add('POST', '/api/data/delete', 'ApiDataController', 'delete');
 $router->add('GET', '/api/saran', 'ApiSaranController', 'index');
 $router->add('POST', '/api/saran/submit', 'ApiSaranController', 'submit');
 $router->add('POST', '/api/saran/delete', 'ApiSaranController', 'delete');
+
+// API Routes untuk Events Kalender (events.json)
+$router->add('GET', '/api/events', 'ApiEventController', 'index');
+$router->add('POST', '/api/events/add', 'ApiEventController', 'add');
+$router->add('POST', '/api/events/delete', 'ApiEventController', 'delete');
 
 // Dapatkan method dan URI
 $method = $_SERVER['REQUEST_METHOD'];

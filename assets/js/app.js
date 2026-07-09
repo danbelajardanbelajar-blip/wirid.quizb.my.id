@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (path === "/kontak") tplId = "tpl-kontak";
         else if (path === "/download") tplId = "tpl-download";
         else if (path === "/privasi") tplId = "tpl-privasi";
+        else if (path === "/kalender") tplId = "tpl-kalender";
         
         const tpl = document.getElementById(tplId);
         if (tpl) {
