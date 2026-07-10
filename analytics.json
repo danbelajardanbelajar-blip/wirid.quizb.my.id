@@ -1,1 +1,72 @@
-[]
+[
+    {
+        "id": "trk_6a517375dae06",
+        "timestamp": "2026-07-11 05:34:29",
+        "action": "open",
+        "type": "turats",
+        "item_id": "28291",
+        "item_title": "Piss-Ktb (51)",
+        "keyword": "",
+        "ip": "103.160.68.245"
+    },
+    {
+        "id": "trk_6a51738840fe1",
+        "timestamp": "2026-07-11 05:34:48",
+        "action": "search",
+        "type": "beranda",
+        "item_id": "",
+        "item_title": "",
+        "keyword": "m",
+        "ip": "103.160.68.245"
+    },
+    {
+        "id": "trk_6a517389106e1",
+        "timestamp": "2026-07-11 05:34:49",
+        "action": "search",
+        "type": "beranda",
+        "item_id": "",
+        "item_title": "",
+        "keyword": "ma",
+        "ip": "103.160.68.245"
+    },
+    {
+        "id": "trk_6a5173897f523",
+        "timestamp": "2026-07-11 05:34:49",
+        "action": "search",
+        "type": "beranda",
+        "item_id": "",
+        "item_title": "",
+        "keyword": "mal",
+        "ip": "103.160.68.245"
+    },
+    {
+        "id": "trk_6a5177bad9c77",
+        "timestamp": "2026-07-11 05:52:42",
+        "action": "search",
+        "type": "beranda",
+        "item_id": "",
+        "item_title": "",
+        "keyword": "wi",
+        "ip": "103.160.68.245"
+    },
+    {
+        "id": "trk_6a5177bbb7521",
+        "timestamp": "2026-07-11 05:52:43",
+        "action": "search",
+        "type": "beranda",
+        "item_id": "",
+        "item_title": "",
+        "keyword": "wit",
+        "ip": "103.160.68.245"
+    },
+    {
+        "id": "trk_6a5177d4975d5",
+        "timestamp": "2026-07-11 05:53:08",
+        "action": "open",
+        "type": "turats",
+        "item_id": "873",
+        "item_title": "نزهة الجلوس في أشعار النساء",
+        "keyword": "",
+        "ip": "103.160.68.245"
+    }
+]
