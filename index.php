@@ -19,6 +19,7 @@ require_once __DIR__ . '/app/Controllers/PageController.php';
 require_once __DIR__ . '/app/Controllers/ApiDataController.php';
 require_once __DIR__ . '/app/Controllers/ApiSaranController.php';
 require_once __DIR__ . '/app/Controllers/ApiEventController.php';
+require_once __DIR__ . '/app/Controllers/ApiDashboardController.php';
 
 use App\Core\Router;
 
@@ -41,6 +42,15 @@ $router->add('POST', '/api/events/add', 'ApiEventController', 'add');
 $router->add('POST', '/api/events/update', 'ApiEventController', 'update');
 $router->add('POST', '/api/events/delete', 'ApiEventController', 'delete');
 $router->add('POST', '/api/events/add_exception', 'ApiEventController', 'addException');
+
+// API Routes untuk Dashboard Analytics (analytics.json)
+$router->add('GET', '/api/dashboard/stats', 'ApiDashboardController', 'index');
+$router->add('GET', '/api/dashboard/data', 'ApiDashboardController', 'data');
+$router->add('POST', '/api/dashboard/track', 'ApiDashboardController', 'track');
+$router->add('POST', '/api/dashboard/clear', 'ApiDashboardController', 'clear');
+
+// Page Routes
+$router->add('GET', '/dashboard', 'PageController', 'dashboard');
 
 // Dapatkan method dan URI
 $method = $_SERVER['REQUEST_METHOD'];

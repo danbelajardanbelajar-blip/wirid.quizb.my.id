@@ -8,4 +8,9 @@ class PageController extends Controller {
         // Tampilkan halaman utama SPA
         $this->view('main_spa');
     }
+
+    public function dashboard() {
+        // Tampilkan halaman dashboard analytics
+        $this->view('dashboard');
+    }
 }

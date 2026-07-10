@@ -348,15 +348,5 @@
         "startDay": 20,
         "startHijriDay": -1,
         "startHijriMonth": 0
-    },
-    {
-        "id": "ev_668fb46cd0001",
-        "label": "Coba",
-        "type": "NONE",
-        "startYear": 2026,
-        "startMonth": 6,
-        "startDay": 31,
-        "startHijriDay": 16,
-        "startHijriMonth": 1
     }
 ]
