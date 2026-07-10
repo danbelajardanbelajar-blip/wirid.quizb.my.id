@@ -6,6 +6,21 @@ class AnalyticsModel extends BaseModel {
         parent::__construct(__DIR__ . '/../../analytics.json');
     }
 
+    protected function readData() {
+        $json = file_get_contents($this->filePath);
+        $data = json_decode($json, true);
+        
+        if (is_array($data) && isset($data['data']) && is_array($data['data'])) {
+            return $data['data'];
+        }
+        return is_array($data) ? $data : [];
+    }
+
+    protected function writeData($data) {
+        $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        return file_put_contents($this->filePath, $json) !== false;
+    }
+
     public function add($data) {
         $analytics = $this->readData();
         
