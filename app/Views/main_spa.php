@@ -527,7 +527,7 @@
   <script>
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=11', { scope: './' })
+        navigator.serviceWorker.register('./sw.js?v=12', { scope: './' })
           .catch(console.error);
       });
     }
