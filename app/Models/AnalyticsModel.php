@@ -37,7 +37,8 @@ class AnalyticsModel extends BaseModel {
         
         foreach ($analytics as $entry) {
             // Count unique pages
-            $page = $entry['page'] ?? 'unknown';
+            $page = $entry['page'] ?? $entry['item_title'] ?? $entry['type'] ?? 'unknown';
+            if (empty($page)) $page = 'unknown';
             if (!isset($stats['unique_pages'][$page])) {
                 $stats['unique_pages'][$page] = 0;
             }

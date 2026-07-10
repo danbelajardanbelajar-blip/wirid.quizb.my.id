@@ -420,12 +420,12 @@
                         tr.className = 'border-b border-gray-200 dark:border-white/10';
                         tr.innerHTML = `
                             <td class="py-3 px-4 text-sm text-gray-900 dark:text-white">${row.timestamp || '-'}</td>
-                            <td class="py-3 px-4 text-sm text-gray-900 dark:text-white">${row.page || '-'}</td>
+                            <td class="py-3 px-4 text-sm text-gray-900 dark:text-white">${row.page || row.item_title || row.type || '-'}</td>
                             <td class="py-3 px-4 text-sm">
                                 <span class="px-2 py-1 bg-brand/20 text-brand rounded-full text-xs">${row.action || 'view'}</span>
                             </td>
                             <td class="py-3 px-4 text-sm text-gray-600 dark:text-gray-400">${row.ip || '-'}</td>
-                            <td class="py-3 px-4 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">${row.user_agent || '-'}</td>
+                            <td class="py-3 px-4 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">${row.user_agent || row.keyword || '-'}</td>
                         `;
                         tableBody.appendChild(tr);
                     });
