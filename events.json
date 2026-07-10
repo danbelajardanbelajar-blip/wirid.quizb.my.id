@@ -341,12 +341,22 @@
     },
     {
         "id": "ev_s_6a4f858e26242",
-        "label": "Ngaos Giliran (Kamis Wage)",
+        "label": "Ngaos Giliran Alumni (Kamis Wage)",
         "type": "SELAPANAN",
         "startYear": 2024,
         "startMonth": 5,
         "startDay": 20,
         "startHijriDay": -1,
         "startHijriMonth": 0
+    },
+    {
+        "id": "ev_668fb46cd0001",
+        "label": "Coba",
+        "type": "NONE",
+        "startYear": 2026,
+        "startMonth": 6,
+        "startDay": 31,
+        "startHijriDay": 16,
+        "startHijriMonth": 1
     }
 ]
