@@ -20,7 +20,10 @@ class ApiEventController extends Controller {
 
     public function add() {
         $body = $this->getJsonBody();
-        $id = trim($body['id'] ?? uniqid('ev_'));
+        $id = trim($body['id'] ?? '');
+        if ($id === '') {
+            $id = uniqid('ev_');
+        }
         $label = trim($body['label'] ?? '');
         $type = trim($body['type'] ?? 'NONE');
         $startYear = $body['startYear'] ?? 0;
