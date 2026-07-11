@@ -1557,8 +1557,12 @@
 
       <div class="mb-8">
         <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Penggunaan Data Lokal</h2>
-        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
           Data preferensi Anda (mode gelap, riwayat posisi baca) <b>tidak pernah</b> dikirimkan ke server kami, murni dipakai hanya agar pengalaman membaca Anda menjadi lebih mulus saat membuka kembali aplikasi.
+        </p>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Pencatatan Analitik (analytics.json)</h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          Untuk keperluan pengembangan dan peningkatan aplikasi (khususnya versi Android), kami mengumpulkan data analitik anonim yang disimpan ke dalam file <code>analytics.json</code> di server kami. Data yang dicatat sebatas interaksi dasar seperti <b>halaman/doa yang dibuka (item_title), jenis aktivitas (action), dan alamat IP sementara</b>, tanpa mengumpulkan data pribadi yang bisa mengidentifikasi Anda secara spesifik. Data ini semata-mata digunakan oleh admin untuk memahami fitur apa yang paling sering digunakan oleh pengguna.
         </p>
       </div>
 
