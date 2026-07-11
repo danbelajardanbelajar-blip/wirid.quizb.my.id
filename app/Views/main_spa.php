@@ -1580,6 +1580,6 @@
   <?php include __DIR__ . '/kalender.html'; ?>
 
   </div>
-  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/app.js?v=1.2"></script>
 </body>
 </html>
