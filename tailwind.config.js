@@ -11,6 +11,9 @@ module.exports = {
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+      },
       colors: { 
         brand: '#10b981',
         panelDark: '#0a1128',
