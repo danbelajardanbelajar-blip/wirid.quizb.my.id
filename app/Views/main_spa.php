@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="/assets/css/app.css?v=3" />
   <style>
     .template-container { display: none; }
+    body { display: flex; justify-content: center; }
+    body > #app { max-width: 860px; width: 100%; min-height: 100vh; position: relative; margin: 0 auto; }
   </style>
 </head>
 <body>
@@ -50,6 +52,7 @@
             <a href="/saran" data-link class="hover:text-brand transition-colors">Saran</a>
             <a href="/tentang" data-link class="hover:text-brand transition-colors">Tentang</a>
             <a href="/admin" data-link class="hover:text-brand transition-colors">Admin</a>
+            <a href="/privasi" data-link class="hover:text-brand transition-colors">Privasi</a>
           </div>
 
           <button id="toggleThemeTop" class="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors active:scale-95" title="Tema">
