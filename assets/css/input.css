@@ -8,4 +8,4 @@
   --color-card-dark: rgba(15,23,50,.65);
 }
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant dark (&:is([data-theme="dark"], [data-theme="dark"] *));

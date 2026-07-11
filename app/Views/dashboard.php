@@ -10,16 +10,17 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.tailwindcss.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="/assets/css/app.css?v=3">
     <style>
-        body { display: flex; justify-content: center; }
+        body { display: flex; justify-content: center; font-family: 'Outfit', sans-serif; }
         .min-h-screen { max-width: 860px; width: 100%; margin: 0 auto; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
         body {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             min-height: 100vh;
         }
         .dark body {
-            background: linear-gradient(135deg, #0a1128 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #070b14 0%, #0f172a 100%);
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.8);

@@ -102,7 +102,7 @@
 
   <!-- Template item doa -->
   <template id="tpl-doa">
-    <details class="doa group bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-brand/40 dark:hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5 transition-all duration-300 mb-3">
+    <details class="doa group bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-brand/40 dark:hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5 hover:-translate-y-0.5 transition-all duration-300 mb-3">
       <summary class="list-none p-4 cursor-pointer flex items-center justify-between gap-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
         <div class="ttl flex-1 font-semibold text-[15px] text-gray-800 dark:text-gray-100 leading-tight"></div>
         <span class="resume-badge hidden text-[11px] px-3 py-1 rounded-full border border-brand text-brand bg-brand/10 font-semibold whitespace-nowrap">Lanjutkan</span>
