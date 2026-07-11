@@ -31,7 +31,7 @@
           <div class="w-10 h-10 shrink-0">
             <img src="logo.png" alt="Logo" class="w-full h-full object-contain rounded-xl shadow-md shadow-brand/20">
           </div>
-          <div class="font-extrabold text-lg sm:text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-brand to-teal-500 hidden sm:block">
+          <div class="title title-gradient font-extrabold text-lg sm:text-2xl tracking-tight hidden sm:block">
             Mafatihul Akhyar
           </div>
         </div>
@@ -73,7 +73,7 @@
     </header>
 
     <main class="wrap">
-      <section id="list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start"></section>
+      <section id="list" class="list-grid"></section>
     </main>
 
     <footer class="wrap">© <span id="year"></span> Mafatihul Akhyar</footer>
