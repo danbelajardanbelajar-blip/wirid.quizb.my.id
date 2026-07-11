@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mafatihul Akhyar SPA</title>
   <link rel="icon" href="logo.png" type="image/png" />
-  <link rel="stylesheet" href="/assets/css/app.css" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=3" />
   <style>
     .template-container { display: none; }
   </style>
