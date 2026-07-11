@@ -5,24 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mafatihul Akhyar SPA</title>
   <link rel="icon" href="logo.png" type="image/png" />
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: ['selector', '[data-theme="dark"]'],
-      theme: {
-        extend: {
-          colors: { 
-            brand: '#10b981',
-            panelDark: '#0a1128',
-            panelLight: '#ffffff',
-            cardDark: 'rgba(15,23,50,.65)'
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/app.css" />
   <style>
     .template-container { display: none; }
   </style>
@@ -284,7 +267,7 @@
           }
         }
 
-        const r = await fetch(DATA_URL + '?v=' + Date.now(), { cache: 'no-store' });
+        const r = await fetch(DATA_URL);
         if(!r.ok) throw new Error('Gagal memuat data.json');
         const json = await r.json();
         const arr = Array.isArray(json?.data) ? json.data
@@ -772,7 +755,7 @@
 
   async function loadEntries() {
     try {
-      const r = await fetch(API + '?v=' + Date.now());
+      const r = await fetch(API);
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const j = await r.json();
       allEntries = Array.isArray(j.data) ? j.data : [];
@@ -1086,7 +1069,7 @@
     container.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div></div>';
     
     try {
-      const r = await fetch(`${API}?action=read&type=${currentType}&v=${Date.now()}`);
+      const r = await fetch(`${API}?action=read&type=${currentType}`);
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const j = await r.json();
       allEntries = Array.isArray(j.data) ? j.data : [];

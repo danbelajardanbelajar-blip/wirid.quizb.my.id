@@ -1,0 +1,27 @@
+{
+  "name": "wirid.quizb.my.id",
+  "version": "1.0.0",
+  "description": "",
+  "main": "patch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danbelajardanbelajar-blip/wirid.quizb.my.id.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/danbelajardanbelajar-blip/wirid.quizb.my.id/issues"
+  },
+  "homepage": "https://github.com/danbelajardanbelajar-blip/wirid.quizb.my.id#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "autoprefixer": "^10.5.2",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^4.3.2"
+  }
+}

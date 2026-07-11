@@ -1,0 +1,11 @@
+@import "./style.css";
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #10b981;
+  --color-panel-dark: #0a1128;
+  --color-panel-light: #ffffff;
+  --color-card-dark: rgba(15,23,50,.65);
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
