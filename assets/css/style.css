@@ -25,6 +25,14 @@
       -webkit-tap-highlight-color:transparent;
       -webkit-font-smoothing:antialiased;
     }
+    
+    #app {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
     body::before{
       content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       background:
