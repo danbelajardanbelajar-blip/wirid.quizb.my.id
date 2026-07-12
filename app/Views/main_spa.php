@@ -5,10 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mafatihul Akhyar SPA</title>
   <link rel="icon" href="logo.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/app.css?v=3" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: { 
+            brand: '#10b981',
+            panelDark: '#0a1128',
+            panelLight: '#ffffff',
+            cardDark: 'rgba(15,23,50,.65)'
+          }
+        }
+      }
+    }
+  </script>
   <style>
     .template-container { display: none; }
     body { display: flex; justify-content: center; }
@@ -16,14 +29,14 @@
   </style>
 </head>
 <body>
-  <div id="app" class="font-sans">Memuat...</div>
+  <div id="app">Memuat...</div>
 
   <div class="template-container">
 
 <template id="tpl-home">
 
   <div id="app">
-    <header class="sticky top-0 z-[60] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/20 shadow-sm px-3 py-3 transition-colors duration-300">
+    <header class="sticky top-0 z-[60] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 px-3 py-3 transition-colors duration-300">
       <div class="max-w-[860px] mx-auto flex items-center justify-between relative gap-4">
         
         <!-- Kiri: Logo & Judul -->
@@ -31,7 +44,7 @@
           <div class="w-10 h-10 shrink-0">
             <img src="logo.png" alt="Logo" class="w-full h-full object-contain rounded-xl shadow-md shadow-brand/20">
           </div>
-          <div class="title title-gradient font-extrabold text-lg sm:text-2xl tracking-tight hidden sm:block">
+          <div class="font-extrabold text-lg sm:text-2xl tracking-tight text-gray-900 dark:text-white hidden sm:block">
             Mafatihul Akhyar
           </div>
         </div>
@@ -73,7 +86,7 @@
     </header>
 
     <main class="wrap">
-      <section id="list" class="list-grid"></section>
+      <section id="list" class="grid" style="grid-template-columns:1fr;"></section>
     </main>
 
     <footer class="wrap">© <span id="year"></span> Mafatihul Akhyar</footer>
@@ -105,7 +118,7 @@
 
   <!-- Template item doa -->
   <template id="tpl-doa">
-    <details class="doa group bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-brand/50 dark:hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10 hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 mb-0">
+    <details class="doa group bg-white dark:bg-[#0a1128] border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-brand/40 dark:hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5 transition-all duration-300 mb-3">
       <summary class="list-none p-4 cursor-pointer flex items-center justify-between gap-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
         <div class="ttl flex-1 font-semibold text-[15px] text-gray-800 dark:text-gray-100 leading-tight"></div>
         <span class="resume-badge hidden text-[11px] px-3 py-1 rounded-full border border-brand text-brand bg-brand/10 font-semibold whitespace-nowrap">Lanjutkan</span>
