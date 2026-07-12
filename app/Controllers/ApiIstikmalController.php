@@ -9,6 +9,7 @@ class ApiIstikmalController extends Controller {
     public function index() {
         if (file_exists($this->file)) {
             $data = json_decode(file_get_contents($this->file), true);
+            if (!$data) $data = ['offsets' => []];
             $this->json(['ok' => true, 'data' => $data]);
         } else {
             $this->json(['ok' => true, 'data' => ['offsets' => []]]);
