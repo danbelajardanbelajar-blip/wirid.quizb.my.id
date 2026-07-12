@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mafatihul Akhyar SPA</title>
   <link rel="icon" href="logo.png" type="image/png" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=3" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=4" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: ['selector', '[data-theme="dark"]'],
+      darkMode: 'class',
       theme: {
         extend: {
           colors: { 
@@ -206,6 +206,11 @@
     function setTheme(t){
       const theme = (t === 'light') ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', theme);
+      if(theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
       const meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute('content', theme==='light' ? '#ffffff' : '#0f172a');
       try{ localStorage.setItem('theme', theme); }catch{}
@@ -553,12 +558,18 @@
         <p class="text-sm text-gray-600 dark:text-gray-400">Tambah, lihat, dan hapus bacaan. Data disimpan di <code>data.json</code>.</p>
       </div>
     </div>
-    <div class="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-2">
+    <div class="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-2 flex-wrap">
       <a href="/admin-saran" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         ✉️ Kelola Saran &amp; Request &rarr;
       </a>
       <a href="/kalender" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-brand shadow-sm whitespace-nowrap border-brand/20">
-        📅 Kelola Kalender &rarr;
+        📅 Kelola Event Kalender &rarr;
+      </a>
+      <a href="/istikmal" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
+        🌙 Set Istikmal &rarr;
+      </a>
+      <a href="/dashboard" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
+        📊 Dashboard Track &rarr;
       </a>
       <a href="/" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         &larr; Home
