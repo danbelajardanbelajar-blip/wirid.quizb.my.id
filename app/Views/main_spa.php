@@ -1474,6 +1474,14 @@
             <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Tampilan didesain untuk HP, aplikasi dapat diinstal dan dipakai tanpa internet.</p>
           </div>
         </div>
+        <!-- Feature 5 -->
+        <div class="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 sm:col-span-2">
+          <div class="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center text-xl shrink-0">⏰</div>
+          <div>
+            <h3 class="font-bold text-gray-900 dark:text-white mb-1">Waktu Shalat & Adzan (Versi 11.0+)</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Jadwal shalat presisi secara offline sesuai lokasi Anda, dilengkapi dengan pengingat waktu (Adzan) dan Kalender Hijriyah otomatis.</p>
+          </div>
+        </div>
       </div>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 border-t border-gray-200 dark:border-white/10">
@@ -1571,8 +1579,16 @@
       <div class="mb-8">
         <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Penggunaan Data Lokal</h2>
         <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-          Data preferensi Anda (mode gelap, riwayat posisi baca) <b>tidak pernah</b> dikirimkan ke server kami, murni dipakai hanya agar pengalaman membaca Anda menjadi lebih mulus saat membuka kembali aplikasi.
+          Data preferensi Anda (mode gelap, riwayat posisi baca, pengaturan notifikasi adzan) <b>tidak pernah</b> dikirimkan ke server kami, murni dipakai hanya agar pengalaman menggunakan aplikasi menjadi lebih mulus.
         </p>
+        
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Perizinan Aplikasi (Khusus Android)</h2>
+        <ul class="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-2 leading-relaxed mb-4">
+          <li><b>Lokasi (Location):</b> Digunakan HANYA untuk menghitung jadwal waktu shalat yang akurat secara offline sesuai posisi Anda. Koordinat lokasi tidak disimpan permanen dan tidak dikirim ke server.</li>
+          <li><b>Alarm (Exact Alarm):</b> Digunakan khusus untuk membunyikan pengingat adzan/notifikasi waktu shalat secara presisi di latar belakang. Bekerja 100% offline.</li>
+          <li><b>Internet:</b> Digunakan untuk sinkronisasi awal tanggal Hijriyah (istikmal) dan mencatat analitik penggunaan anonim.</li>
+        </ul>
+
         <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Pencatatan Analitik (analytics.json)</h2>
         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
           Untuk keperluan pengembangan dan peningkatan aplikasi (khususnya versi Android), kami mengumpulkan data analitik anonim yang disimpan ke dalam file <code>analytics.json</code> di server kami. Data yang dicatat sebatas interaksi dasar seperti <b>halaman/doa yang dibuka (item_title), jenis aktivitas (action), dan alamat IP sementara</b>, tanpa mengumpulkan data pribadi yang bisa mengidentifikasi Anda secara spesifik. Data ini semata-mata digunakan oleh admin untuk memahami fitur apa yang paling sering digunakan oleh pengguna.
