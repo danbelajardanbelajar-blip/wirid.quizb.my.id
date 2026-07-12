@@ -99,7 +99,7 @@
     </div>
 
     <script>
-        const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        const hijriMonthNames = ["Muharram", "Safar", "Rabi'ul Awwal", "Rabi'ul Akhir", "Jumadil Awwal", "Jumadil Akhir", "Rajab", "Sya'ban", "Ramadhan", "Syawwal", "Dzulqa'dah", "Dzulhijjah"];
         let currentData = {};
 
         function showToast(msg) {
@@ -109,32 +109,46 @@
         }
 
         $(document).ready(function() {
-            // Load data
+            // Load saved offsets
             $.get('/api/istikmal', function(res) {
                 if(res.ok) {
                     currentData = res.data.offsets || {};
-                    renderMonths();
+                    // Get current Hijri Date to start the list
+                    const today = new Date();
+                    const dd = String(today.getDate()).padStart(2, '0');
+                    const mm = String(today.getMonth() + 1).padStart(2, '0');
+                    const yyyy = today.getFullYear();
+                    
+                    $.get(`https://api.aladhan.com/v1/gToH?date=${dd}-${mm}-${yyyy}`, function(aladhanRes) {
+                        if(aladhanRes.code === 200) {
+                            let hYear = parseInt(aladhanRes.data.hijri.year);
+                            let hMonth = parseInt(aladhanRes.data.hijri.month.number);
+                            renderMonths(hYear, hMonth);
+                        }
+                    }).fail(function() {
+                        // Fallback approx if API fails
+                        renderMonths(1448, 1);
+                    });
                 }
             });
 
-            function renderMonths() {
+            function renderMonths(startYear, startMonth) {
                 $('#loading').hide();
                 const container = $('#months-container');
                 container.empty();
                 
-                const now = new Date();
-                let year = now.getFullYear();
-                let month = now.getMonth() + 1; // 1-based
+                let year = startYear;
+                let month = startMonth;
                 
-                // Show current month and next 11 months
+                // Show current Hijri month and next 11 months
                 for(let i = 0; i < 12; i++) {
-                    const key = `${year}-${month}`;
+                    const key = `${year}-${month}`; // e.g. "1448-1"
                     const isChecked = currentData[key] === -1;
                     
                     const html = `
                         <div class="month-item flex items-center justify-between p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-800/50">
                             <div class="flex flex-col">
-                                <span class="font-bold text-lg">${monthNames[month-1]} ${year}</span>
+                                <span class="font-bold text-lg text-slate-800 dark:text-slate-100">${hijriMonthNames[month-1]} ${year} H</span>
                                 <span class="text-xs text-slate-500 font-mono">Key: ${key}</span>
                             </div>
                             <div class="checkbox-wrapper-31">
