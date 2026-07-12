@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengaturan Istikmal - Mafatihul Akhyar</title>
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-      }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<template id="tpl-istikmal">
     <style>
-        body { display: flex; justify-content: center; font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); min-height: 100vh; }
-        .min-h-screen { max-width: 860px; width: 100%; margin: 0 auto; box-shadow: 0 0 40px rgba(0,0,0,0.05); background: white; }
-        .dark body { background: linear-gradient(135deg, #070b14 0%, #0f172a 100%); }
-        .dark .min-h-screen { background: #0a1128; }
-        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
-        .dark .glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
-        
         .month-item { transition: all 0.2s ease; }
         .month-item:hover { transform: translateY(-2px); }
         
@@ -36,13 +15,12 @@
         .checkbox-wrapper-31 input[type=checkbox]:checked + svg .stroke { stroke-dashoffset: 0; }
         .checkbox-wrapper-31 input[type=checkbox]:checked + svg .check { stroke-dashoffset: 0; }
     </style>
-</head>
-<body class="text-slate-800 dark:text-slate-200">
-    <div class="min-h-screen flex flex-col relative">
+
+    <div class="min-h-screen flex flex-col relative w-full max-w-4xl mx-auto">
         <header class="sticky top-0 z-[60] bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/20 shadow-sm px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="p-2 -ml-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+                    <a href="/admin" data-link class="p-2 -ml-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-slate-800 dark:text-slate-200">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
@@ -55,8 +33,8 @@
             </div>
         </header>
 
-        <main class="flex-1 p-6">
-            <div class="glass-card rounded-2xl p-6 mb-8 shadow-sm">
+        <main class="flex-1 p-6 text-slate-800 dark:text-slate-200">
+            <div class="bg-white/80 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 mb-8 shadow-sm border border-gray-200 dark:border-white/5">
                 <div class="flex flex-col gap-2 mb-6">
                     <h2 class="text-lg font-semibold flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
@@ -98,9 +76,10 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        const hijriMonthNames = ["Muharram", "Safar", "Rabi'ul Awwal", "Rabi'ul Akhir", "Jumadil Awwal", "Jumadil Akhir", "Rajab", "Sya'ban", "Ramadhan", "Syawwal", "Dzulqa'dah", "Dzulhijjah"];
-        let currentData = {};
+        var hijriMonthNames = ["Muharram", "Safar", "Rabi'ul Awwal", "Rabi'ul Akhir", "Jumadil Awwal", "Jumadil Akhir", "Rajab", "Sya'ban", "Ramadhan", "Syawwal", "Dzulqa'dah", "Dzulhijjah"];
+        var currentData = {};
 
         function showToast(msg) {
             $('#toast-msg').text(msg);
@@ -108,12 +87,11 @@
             setTimeout(() => $('#toast').addClass('translate-y-[150%]'), 3000);
         }
 
-        $(document).ready(function() {
+        setTimeout(() => {
             // Load saved offsets
             $.get('/api/istikmal', function(res) {
                 if(res.ok) {
                     currentData = res.data.offsets || {};
-                    // Get current Hijri Date to start the list
                     const today = new Date();
                     const dd = String(today.getDate()).padStart(2, '0');
                     const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -126,7 +104,6 @@
                             renderMonths(hYear, hMonth);
                         }
                     }).fail(function() {
-                        // Fallback approx if API fails
                         renderMonths(1448, 1);
                     });
                 }
@@ -140,9 +117,8 @@
                 let year = startYear;
                 let month = startMonth;
                 
-                // Show current Hijri month and next 11 months
                 for(let i = 0; i < 12; i++) {
-                    const key = `${year}-${month}`; // e.g. "1448-1"
+                    const key = `${year}-${month}`;
                     const isChecked = currentData[key] === -1;
                     
                     const html = `
@@ -174,7 +150,7 @@
                 $('#save-container').removeClass('hidden');
             }
 
-            $('#btn-save').click(function() {
+            $('#btn-save').off('click').on('click', function() {
                 const btn = $(this);
                 const originalText = btn.html();
                 btn.html('<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div> Menyimpan...');
@@ -204,7 +180,6 @@
                     }
                 });
             });
-        });
+        }, 100); // Small timeout to let DOM render
     </script>
-</body>
-</html>
+</template>

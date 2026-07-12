@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let path = location.pathname;
         let tplId = "tpl-home";
         
-        if (path === "/admin" || path === "/admin-saran") {
+        if (path === "/admin" || path === "/admin-saran" || path === "/dashboard" || path === "/istikmal" || path === "/kalender") {
             if (sessionStorage.getItem('admin_logged') !== '1') {
                 const pass = prompt("Masukkan password Admin:");
                 if (pass === "123") {
@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (path === "/download") tplId = "tpl-download";
         else if (path === "/privasi") tplId = "tpl-privasi";
         else if (path === "/kalender") tplId = "tpl-kalender";
+        else if (path === "/dashboard") tplId = "tpl-dashboard";
+        else if (path === "/istikmal") tplId = "tpl-istikmal";
         
         const tpl = document.getElementById(tplId);
         if (tpl) {
@@ -42,15 +44,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // Fungsi untuk mengeksekusi tag <script> yang dimasukkan melalui innerHTML
-    function executeScripts(element) {
-        const scripts = element.querySelectorAll("script");
-        scripts.forEach(oldScript => {
-            const newScript = document.createElement("script");
-            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-        });
+    // Fungsi untuk mengeksekusi tag <script> secara berurutan agar dependensi eksternal (spt jQuery) selesai dimuat lebih dulu
+    async function executeScripts(element) {
+        const scripts = Array.from(element.querySelectorAll("script"));
+        for (const oldScript of scripts) {
+            await new Promise((resolve) => {
+                const newScript = document.createElement("script");
+                Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                
+                if (newScript.src) {
+                    newScript.onload = resolve;
+                    newScript.onerror = resolve; // Lanjut jika gagal
+                }
+                
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+                
+                if (!newScript.src) {
+                    resolve();
+                }
+            });
+        }
     }
 
     // Intercept semua klik pada link internal

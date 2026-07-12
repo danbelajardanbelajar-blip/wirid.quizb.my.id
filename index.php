@@ -55,8 +55,7 @@ $router->add('GET', '/api/istikmal', 'ApiIstikmalController', 'index');
 $router->add('POST', '/api/istikmal/update', 'ApiIstikmalController', 'update');
 
 // Page Routes
-$router->add('GET', '/dashboard', 'PageController', 'dashboard');
-$router->add('GET', '/istikmal', 'PageController', 'istikmal');
+$router->add('GET', '/kalender', 'PageController', 'kalender');
 
 // Dapatkan method dan URI
 $method = $_SERVER['REQUEST_METHOD'];

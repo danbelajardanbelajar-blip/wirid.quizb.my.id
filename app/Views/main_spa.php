@@ -565,10 +565,10 @@
       <a href="/kalender" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-brand shadow-sm whitespace-nowrap border-brand/20">
         📅 Kelola Event Kalender &rarr;
       </a>
-      <a href="/istikmal" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
+      <a href="/istikmal" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         🌙 Set Istikmal &rarr;
       </a>
-      <a href="/dashboard" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
+      <a href="/dashboard" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         📊 Dashboard Track &rarr;
       </a>
       <a href="/" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
@@ -1591,8 +1591,10 @@
 </template>
 
   <?php include __DIR__ . '/kalender.html'; ?>
+  <?php include __DIR__ . '/dashboard.html'; ?>
+  <?php include __DIR__ . '/istikmal.html'; ?>
 
   </div>
-  <script src="/assets/js/app.js?v=1.3"></script>
+  <script src="/assets/js/app.js?v=1.4"></script>
 </body>
 </html>
