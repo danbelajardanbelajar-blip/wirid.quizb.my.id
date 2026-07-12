@@ -20,6 +20,7 @@ require_once __DIR__ . '/app/Controllers/ApiDataController.php';
 require_once __DIR__ . '/app/Controllers/ApiSaranController.php';
 require_once __DIR__ . '/app/Controllers/ApiEventController.php';
 require_once __DIR__ . '/app/Controllers/ApiDashboardController.php';
+require_once __DIR__ . '/app/Controllers/ApiIstikmalController.php';
 
 use App\Core\Router;
 
@@ -49,8 +50,13 @@ $router->add('GET', '/api/dashboard/data', 'ApiDashboardController', 'data');
 $router->add('POST', '/api/dashboard/track', 'ApiDashboardController', 'track');
 $router->add('POST', '/api/dashboard/clear', 'ApiDashboardController', 'clear');
 
+// API Routes untuk Istikmal
+$router->add('GET', '/api/istikmal', 'ApiIstikmalController', 'index');
+$router->add('POST', '/api/istikmal/update', 'ApiIstikmalController', 'update');
+
 // Page Routes
 $router->add('GET', '/dashboard', 'PageController', 'dashboard');
+$router->add('GET', '/istikmal', 'PageController', 'istikmal');
 
 // Dapatkan method dan URI
 $method = $_SERVER['REQUEST_METHOD'];

@@ -13,4 +13,9 @@ class PageController extends Controller {
         // Tampilkan halaman dashboard analytics
         $this->view('dashboard');
     }
+
+    public function istikmal() {
+        // Tampilkan halaman pengaturan istikmal
+        $this->view('istikmal');
+    }
 }
