@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let node = e.target;
         while(node && node !== document.body) {
             // Jika itu adalah link (a tag) ke origin yang sama, dan bukan target blank
-            if (node.tagName === 'A' && node.href.startsWith(window.location.origin) && node.target !== '_blank') {
+            if (node.tagName === 'A' && node.href.startsWith(window.location.origin) && node.target !== '_blank' && node.hasAttribute('data-link')) {
                 e.preventDefault();
                 navigateTo(node.href);
                 break;
