@@ -6,7 +6,12 @@
     <title>Pengaturan Istikmal - Mafatihul Akhyar</title>
     <link rel="icon" href="/logo.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="/assets/css/app.css?v=3">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
         body { display: flex; justify-content: center; font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); min-height: 100vh; }
