@@ -33,6 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data[] = $entry;
         file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
         
+        // [REALTIME NOTIFIKASI] Tembak sinyal ke Tahajjud API secara asinkron
+        $notifyUrl = 'https://tahajjud.quizb.my.id/api_notify.php';
+        $postData = http_build_query([
+            'secret' => 'QUIZB_NOTIFY_SECRET_99',
+            'message' => 'Ada aktivitas ' . ($payload['action'] ?? 'baru') . ' di Wirid!'
+        ]);
+        
+        $ch = curl_init($notifyUrl);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
+        curl_close($ch);
+        
         echo json_encode(['status' => 'success']);
     } else {
         http_response_code(400);
