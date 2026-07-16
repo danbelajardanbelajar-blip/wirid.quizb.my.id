@@ -34,10 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
         
         // [REALTIME NOTIFIKASI] Tembak sinyal ke Tahajjud API secara asinkron
+        $actionName = $payload['action'] ?? 'baru';
+        $titleName = $payload['item_title'] ?? '';
+        $queryName = $payload['keyword'] ?? '';
+        
+        $msgText = "Aktivitas " . $actionName;
+        if ($titleName) $msgText .= " " . $titleName;
+        if ($queryName) $msgText .= " " . $queryName;
+
         $notifyUrl = 'https://tahajjud.quizb.my.id/api_notify.php';
         $postData = http_build_query([
             'secret' => 'QUIZB_NOTIFY_SECRET_99',
-            'message' => 'Ada aktivitas ' . ($payload['action'] ?? 'baru') . ' di Wirid!'
+            'message' => $msgText
         ]);
         
         $ch = curl_init($notifyUrl);
