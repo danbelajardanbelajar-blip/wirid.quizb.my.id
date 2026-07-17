@@ -31,6 +31,7 @@ $router->add('GET', '/api/data', 'ApiDataController', 'index');
 $router->add('POST', '/api/data/add', 'ApiDataController', 'add');
 $router->add('POST', '/api/data/update', 'ApiDataController', 'update');
 $router->add('POST', '/api/data/delete', 'ApiDataController', 'delete');
+$router->add('GET', '/api/data/export/word', 'ApiDataController', 'exportWord');
 
 // API Routes untuk Saran (saran.json)
 $router->add('GET', '/api/saran', 'ApiSaranController', 'index');

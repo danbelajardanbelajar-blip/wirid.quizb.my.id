@@ -75,4 +75,42 @@ class ApiDataController extends Controller {
             $this->json(['ok' => false, 'error' => $result['error'] ?? 'Gagal menghapus'], 404);
         }
     }
+    public function exportWord() {
+        $data = $this->model->getAll();
+        
+        $html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">';
+        $html .= '<head><meta charset="utf-8"><title>Export Doa & Wirid</title>';
+        $html .= '<style>';
+        $html .= 'body { font-family: "Amiri", "Traditional Arabic", Arial, sans-serif; }';
+        $html .= '.item { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 15px; }';
+        $html .= 'h2 { color: #10b981; font-size: 18pt; text-align: center; margin-bottom: 5px; }';
+        $html .= '.kategori { text-align: center; color: #666; font-size: 12pt; font-style: italic; margin-bottom: 15px; }';
+        $html .= '.arab { font-size: 24pt; line-height: 2.5; text-align: right; direction: rtl; }';
+        $html .= '</style></head><body>';
+        
+        $html .= '<h1 style="text-align: center; color: #333;">Data Doa & Wirid (Mafatihul Akhyar)</h1>';
+        $html .= '<hr style="margin-bottom: 30px;">';
+        
+        foreach ($data as $item) {
+            $html .= '<div class="item">';
+            $html .= '<h2>' . htmlspecialchars($item['judul']) . '</h2>';
+            $html .= '<div class="kategori">Kategori: ' . htmlspecialchars($item['kategori']) . '</div>';
+            
+            // Format arab text: replace newlines with <br>
+            $arab = nl2br(htmlspecialchars($item['arab']));
+            $html .= '<div class="arab" dir="rtl">' . $arab . '</div>';
+            $html .= '</div>';
+        }
+        
+        $html .= '</body></html>';
+        
+        header("Content-Type: application/vnd.ms-word; charset=utf-8");
+        header("Content-Disposition: attachment; filename=Data_Doa_Wirid.doc");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Cache-Control: private", false);
+        
+        echo $html;
+        exit;
+    }
 }

@@ -571,6 +571,9 @@
       <a href="/dashboard" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         📊 Dashboard Track &rarr;
       </a>
+      <a href="/api/data/export/word" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all font-semibold text-sm shadow-sm whitespace-nowrap">
+        📄 Export to Word
+      </a>
       <a href="/" data-link class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/20 transition-all font-semibold text-sm text-gray-700 dark:text-gray-200 shadow-sm whitespace-nowrap">
         &larr; Home
       </a>
